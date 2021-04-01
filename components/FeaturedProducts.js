@@ -7,13 +7,15 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+// import * as Svg from 'react-native-svg';
+// import Image1 from "./image1";
 
 const { width, height } = Dimensions.get("window");
 const SPACING = 20;
 const data = [
-  { id: 1, image: require("../assets/image.png"), title: 'Ttaera fragrance', price: '6' },
-  { id: 2, image: require("../assets/image-1.png"), title: 'Lean fragrance', price: '6' },
-  { id: 3, image: require("../assets/image-2.png"), title: 'Lateen fragrance', price: '6' },
+  { id: 1, image: require("../assets/image.svg"), title: 'Ttaera fragrance', price: '6' },
+  { id: 2, image: require("../assets/image-1.svg"), title: 'Lean fragrance', price: '6' },
+  { id: 3, image: require("../assets/image-2.svg"), title: 'Lateen fragrance', price: '6' },
 ];
 
 export default function FeaturedProducts() {
@@ -23,7 +25,7 @@ export default function FeaturedProducts() {
         data={data}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        pagingEnabled={true}
+        
         renderItem={({ item, key }) => {
           return (
             <View>
