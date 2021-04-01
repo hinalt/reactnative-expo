@@ -21,13 +21,11 @@ export default function App() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <BannerSlider />
         <SearchSection />
-        <FeaturedProducts updateCart={updateCart}/>
+        <FeaturedProducts updateCart={updateCart} />
         <Categories />
-        <Text>
-         {!isCartEmpty ? <Button>Order Now</Button> : ''}
-         </Text>
         <StatusBar style="auto" />
       </ScrollView>
+      <Button show={!isCartEmpty}>Order Now</Button>
     </SafeAreaView>
   );
 }

@@ -14,7 +14,7 @@ export default function SearchSection() {
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
-        style={{ backgroundColor: "#F0F3F5", width: "68%", borderRadius: 10 }}
+        style={{ backgroundColor: "#F0F3F5", width: "60%", borderRadius: 10 }}
       />
       <View />
       <View style={styles.iconContainer}>
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     backgroundColor: "#F0F3F5",
     padding: 8,
+    marginHorizontal: 3,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
