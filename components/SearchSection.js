@@ -2,7 +2,8 @@
 import React, {useState} from 'react';
 import { Searchbar } from 'react-native-paper';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import SvgUri from "expo-svg-uri";
+import DeliverySvg from '../assets/delivery'
+import StoreSvg from '../assets/store'
 
 export default function SearchSection() {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -14,18 +15,18 @@ export default function SearchSection() {
       placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchQuery}
-      style={{backgroundColor:'#F0F3F5', borderWidth:1, borderColor:'#707070', width:200}}
+      style={{backgroundColor:'#F0F3F5', borderWidth:1, borderColor:'#707070', width:'65%',borderRadius:10}}
     />
-    <View>
-    <SvgUri
-      width="200"
-      height="200"
-      source={{
-        uri: "../assets/delivery.svg"
-      }}
-    />
+    <View/>
+    <View style={styles.iconContainer}>
+    <DeliverySvg/>
     </View>
+    <View style={styles.iconContainer}> 
+    <StoreSvg/>
     </View>
+    
+    </View>
+   
   );
 }
 
@@ -34,7 +35,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingTop:20,
     flexDirection:'row',
-    paddingHorizontal:10
+    paddingHorizontal:10,
+    alignItems:'center',
+    justifyContent:'space-between',
     
   },
+  iconContainer:{
+    backgroundColor:'#F0F3F5',
+    padding:15,
+    borderRadius:10
+  }
 });
