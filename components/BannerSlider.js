@@ -1,6 +1,7 @@
 
-import React from 'react';
-import { FlatList, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import React, {useState, useRef} from 'react';
+import { FlatList, StyleSheet, Text, View, Image, Dimensions, Animated } from 'react-native';
+import Paginator from './Paginator'
 
 const {width, height } = Dimensions.get('window')
 const  SPACING = 20
@@ -13,6 +14,13 @@ const data = [
 
 
 export default function BannerSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const scrollX = useRef(new Animated.Value(0)).current
+ const slidesRef = useRef(null)
+  const viewableItemsChanged = useRef(({viweableItems})=>{
+
+  }).current
+  const viewConfig = useRef({viewAreaCoveragePercentThreshold:50}).current
   return (
     <View style={styles.container}>
      <FlatList 
@@ -20,13 +28,22 @@ export default function BannerSlider() {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
+        keyExtractor={(item,index)=>item.id.toString()}
+        onScroll ={Animated.event([{nativeEvent:{contentOffset:{x:scrollX}}}],
+          {useNativeDriver:false})}
+          onViewableItemsChanged = {viewableItemsChanged}
+          viewabilityConfig = {viewConfig}
+          scrollEventThrottle = {32}
+          bounces={false}
+          ref={slidesRef}
         renderItem={({item, key})=>{
          return   <View>
                  <Image source={item.image} style={{width:width -2*SPACING, height:300,marginLeft:SPACING, marginRight:SPACING}}/>
             </View>
            
         }}
-        keyExtractor={(item,index)=>item.id.toString()}/>
+       />
+        <Paginator data={data} scrollX = {scrollX}/>
     </View>
   );
 }
@@ -34,8 +51,8 @@ export default function BannerSlider() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     paddingTop:20
   },
 });

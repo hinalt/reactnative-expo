@@ -10,8 +10,8 @@ import Button from './components/Button'
 export default function App() {
   return (
     <SafeAreaView  style={styles.container}>
-      <ScrollView>
-      <Header/>
+         <Header/>
+      <ScrollView showsVerticalScrollIndicator={false}>
      <BannerSlider/>
      <SearchSection/>
      <Categories/>

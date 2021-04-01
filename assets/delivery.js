@@ -1,7 +1,7 @@
 import React from 'react'
 import Svg,{G, Path, Rect} from 'react-native-svg'
 
-export default Delivery = ()=>{
+const Delivery = ()=>{
 
   return(
     <Svg xmlns="http://www.w3.org/2000/Svg" width="28.655" height="19.866" viewBox="0 0 28.655 19.866">
@@ -57,4 +57,5 @@ export default Delivery = ()=>{
   )
 }
 
+export default Delivery
 
