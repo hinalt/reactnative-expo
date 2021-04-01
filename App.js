@@ -1,17 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import BannerSlider from "./components/BannerSlider";
+import Categories from "./components/Categories";
 import FeaturedProducts from "./components/FeaturedProducts";
 import Header from "./components/Header";
+import SearchSection from "./components/SearchSection";
+import Button from "./components/Button";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
-      <BannerSlider />
-      <StatusBar style="auto" />
-      <FeaturedProducts />
+      <ScrollView>
+        <Header />
+        <BannerSlider />
+        <SearchSection />
+        <FeaturedProducts />
+        <Categories />
+        <Button>Order Now</Button>
+        <StatusBar style="auto" />
+      </ScrollView>
     </SafeAreaView>
   );
 }
