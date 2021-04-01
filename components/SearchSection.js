@@ -15,14 +15,16 @@ export default function SearchSection() {
       placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchQuery}
-      style={{backgroundColor:'#F0F3F5', borderWidth:1, borderColor:'#707070', width:'65%',borderRadius:10}}
+      style={{backgroundColor:'#F0F3F5', width:'68%',borderRadius:10}}
     />
     <View/>
     <View style={styles.iconContainer}>
     <DeliverySvg/>
+    <Text style={styles.textStyle}>Delivery</Text>
     </View>
     <View style={styles.iconContainer}> 
     <StoreSvg/>
+    <Text style={styles.textStyle}>Pickup</Text>
     </View>
     
     </View>
@@ -42,7 +44,12 @@ const styles = StyleSheet.create({
   },
   iconContainer:{
     backgroundColor:'#F0F3F5',
-    padding:15,
-    borderRadius:10
+    padding:8,
+    borderRadius:10,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  textStyle:{
+    fontSize:11
   }
 });
