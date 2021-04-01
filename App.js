@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import BannerSlider from "./components/BannerSlider";
 import Categories from "./components/Categories";
@@ -9,15 +9,21 @@ import SearchSection from "./components/SearchSection";
 import Button from "./components/Button";
 
 export default function App() {
+
+  const [isCartEmpty, setIsCartEmpty] = useState(true);
+  const updateCart = () => {
+    setIsCartEmpty(false);
+  }
+  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Header />
         <BannerSlider />
         <SearchSection />
-        <FeaturedProducts />
+        <FeaturedProducts updateCart={updateCart}/>
         <Categories />
-        <Button>Order Now</Button>
+        {isCartEmpty ? '' : <Button>Order Now</Button>}
         <StatusBar style="auto" />
       </ScrollView>
     </SafeAreaView>

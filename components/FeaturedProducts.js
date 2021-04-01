@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   FlatList,
   StyleSheet,
@@ -7,44 +7,85 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-// import * as Svg from 'react-native-svg';
-// import Image1 from "./image1";
+import TransparentButton from "./TransparentButton";
+import AddSubtract from "./AddSubtract";
 
 const { width, height } = Dimensions.get("window");
-const SPACING = 20;
-const data = [
-  { id: 1, image: require("../assets/image.svg"), title: 'Ttaera fragrance', price: '6' },
-  { id: 2, image: require("../assets/image-1.svg"), title: 'Lean fragrance', price: '6' },
-  { id: 3, image: require("../assets/image-2.svg"), title: 'Lateen fragrance', price: '6' },
-];
+const SPACING = 10;
 
-export default function FeaturedProducts() {
+
+export default function FeaturedProducts(props) {
+  let data = [
+    {
+      id: 1,
+      image: require("../assets/image.png"),
+      title: "Ttaera fragrance",
+      price: "6",
+      addToCart: false,
+    },
+    {
+      id: 2,
+      image: require("../assets/image-1.png"),
+      title: "Lean fragrance",
+      price: "6",
+      addToCart: false,
+    },
+    {
+      id: 3,
+      image: require("../assets/image-2.png"),
+      title: "Lateen fragrance",
+      price: "6",
+      addToCart: false,
+    },
+  ];
+  const [productData, setProductData] = useState(data);
+
+  const addToCart = (item) => {
+    let newArray = [...productData];
+    let addedItemObj = newArray.find((x) => {
+      if (x.id === item.id) {
+        return (item.addToCart = true);
+      }
+    });
+    setProductData(newArray);
+    props.updateCart();
+  };
+
   return (
     <View style={styles.container}>
+      <Text style={styles.textStyle}>Featured</Text>
       <FlatList
-        data={data}
+        data={productData}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        
         renderItem={({ item, key }) => {
           return (
-            <View>
+            <View
+              key={item.id}
+              style={{ marginLeft: SPACING, marginRight: SPACING }}
+            >
               <Image
                 source={item.image}
                 style={{
-                  width: width - 2 * SPACING,
-                  height: 300,
-                  marginLeft: SPACING,
-                  marginRight: SPACING,
+                  width: 142,
                 }}
               />
-              <Text>{item.title}</Text>
-              <Text>{item.price}</Text>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.price}>{item.price} KWD</Text>
+              {item.addToCart ? (
+                <AddSubtract />
+              ) : (
+                <TransparentButton clicked={() => addToCart(item)}>
+                  Add to Order
+                </TransparentButton>
+              )}
             </View>
           );
         }}
         keyExtractor={(item, index) => item.id.toString()}
       />
+
+      
     </View>
   );
 }
@@ -53,8 +94,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
     paddingTop: 20,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  title: {
+    fontSize: 18,
+  },
+  price: {
+    color: "#FD8F25",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  textStyle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    paddingHorizontal: SPACING,
+    includeFontPadding: false,
   },
 });
