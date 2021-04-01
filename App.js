@@ -12,6 +12,7 @@ export default function App() {
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   const updateCart = () => {
     setIsCartEmpty(false);
+    console.log(isCartEmpty);
   };
 
   return (
@@ -20,9 +21,11 @@ export default function App() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <BannerSlider />
         <SearchSection />
-        <FeaturedProducts updateCart={updateCart} />
+        <FeaturedProducts updateCart={updateCart}/>
         <Categories />
-        {isCartEmpty ? "" : <Button>Order Now</Button>}
+        <Text>
+         {!isCartEmpty ? <Button>Order Now</Button> : ''}
+         </Text>
         <StatusBar style="auto" />
       </ScrollView>
     </SafeAreaView>
