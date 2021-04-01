@@ -18,21 +18,21 @@ export default function FeaturedProducts(props) {
   let data = [
     {
       id: 1,
-      image: require("../assets/image.png"),
+      image: require("../assets/Image.png"),
       title: "Ttaera fragrance",
       price: "6",
       addToCart: false,
     },
     {
       id: 2,
-      image: require("../assets/image-1.png"),
+      image: require("../assets/Image-1.png"),
       title: "Lean fragrance",
       price: "6",
       addToCart: false,
     },
     {
       id: 3,
-      image: require("../assets/image-2.png"),
+      image: require("../assets/Image-2.png"),
       title: "Lateen fragrance",
       price: "6",
       addToCart: false,
